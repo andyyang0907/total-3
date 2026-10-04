@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平时大作业三 · 作品集</title>
+
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">平时大作业三 · 作品集</a>
+      <span class="navbar-text text-white-50">聚合课堂作业六至八</span>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <header class="mb-4">
+      <h1 class="h3">前端技术整合 · 作品集</h1>
+      <p class="text-muted">六个模块，覆盖 jQuery / 异步加载 / ECharts / Chart.js / Three.js / A-Frame</p>
+    </header>
+
+    <section class="row g-3">
+
+      <div class="col-md-6 col-lg-4">
+        <a href="1-jquery-filter.html" class="card-link">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">模块 1</span>
+              <h2 class="h5">jQuery 筛选交互</h2>
+              <p class="text-muted small mb-0">自习室楼层 + 开放状态组合筛选，演示 .val() / .filter() / .html() / .on() 替代原生 DOM。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="2-async-dashboard.html" class="card-link">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">模块 2+3+4</span>
+              <h2 class="h5">异步加载 + ECharts + Chart.js</h2>
+              <p class="text-muted small mb-0">fetch 加载 library.json，卡片汇总 + ECharts 柱状图 + Chart.js 折线图三件套。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="3-echarts-rockets.html" class="card-link">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">模块 3</span>
+              <h2 class="h5">ECharts 火箭对比</h2>
+              <p class="text-muted small mb-0">4 个火箭高度与近地轨道运载能力分组柱状图，当前火箭高亮主色（itemStyle 按数据点覆盖）。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="4-three-js.html" class="card-link">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">模块 5</span>
+              <h2 class="h5">Three.js 旋转展示台</h2>
+              <p class="text-muted small mb-0">BoxGeometry / CylinderGeometry / SphereGeometry + 3 种材质 + 环境光 + 方向光 + 点光源 + 自转 + OrbitControls。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <a href="5-a-frame-rockets.html" class="card-link">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">模块 6</span>
+              <h2 class="h5">A-Frame 火箭结构</h2>
+              <p class="text-muted small mb-0">鼻锥 + 箭体 + 喷嘴 + 火焰（圆锥 + 圆柱 + 翻转的圆锥 + 翻转的圆锥+动画），声明式 HTML。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-secondary">
+          <div class="card-body">
+            <span class="badge bg-secondary mb-2">整合</span>
+            <h2 class="h5">完整案例复现</h2>
+            <p class="text-muted small mb-0">另有 lecture8/integration（迷你版校园信息中心）和 lecture8/rockets（自主实践火箭家族），含 navbar 高亮、错误三态、三档宽度。</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="text-muted small mt-5 pt-3 border-top">
+      <p class="mb-1">六个模块独立可运行，库文件共享 <code>libs/</code>，数据文件共享 <code>data/</code>。</p>
+      <p class="mb-1">本地启动：<code>cd total-3 && python3 -m http.server 8000</code>，浏览器打开 <code>http://localhost:8000/</code>。</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 筛选交互</title>
+
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">← 作品集首页</a>
+      <span class="navbar-text text-white-50">jQuery 筛选交互</span>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <h1 class="h4 mb-3">自习室筛选</h1>
+    <p class="text-muted small">演示 jQuery 的 .val() / .filter() / .html() / .on() 四件套替代原生 DOM</p>
+
+    <div class="row g-2 mb-3">
+      <div class="col-6 col-md-3">
+        <select id="filter-floor" class="form-select" aria-label="按楼层筛选">
+          <option value="all">全部楼层</option>
+          <option value="1">1F</option>
+          <option value="2">2F</option>
+          <option value="3">3F</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3">
+        <select id="filter-status" class="form-select" aria-label="按开放状态筛选">
+          <option value="all">全部状态</option>
+          <option value="open">开放</option>
+          <option value="closed">关闭</option>
+        </select>
+      </div>
+    </div>
+
+    <ul id="list" class="list-group"></ul>
+
+  </main>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script>
+    const studyRooms = [
+      { name: '图书馆一楼自习室', floor: 1, open: true },
+      { name: '图书馆二楼自习室', floor: 2, open: true },
+      { name: '教学楼A区自习室', floor: 1, open: false },
+      { name: '教学楼B区自习室', floor: 2, open: true },
+      { name: '实验楼自习室', floor: 3, open: false }
+    ];
+
+    const renderList = () => {
+      const floor = $('#filter-floor').val();
+      const status = $('#filter-status').val();
+      const filtered = studyRooms.filter(r => {
+        if (floor !== 'all' && String(r.floor) !== floor) return false;
+        if (status === 'open' && !r.open) return false;
+        if (status === 'closed' && r.open) return false;
+        return true;
+      });
+      $('#list').html(filtered.length
+        ? filtered.map(r => `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>${r.name}（${r.floor}F）</span>
+              <span class="badge bg-${r.open ? 'success' : 'secondary'}">${r.open ? '开放' : '关闭'}</span>
+            </li>`).join('')
+        : '<li class="list-group-item text-muted">无符合条件的自习室</li>');
+    };
+
+    $('#filter-floor, #filter-status').on('change', renderList);
+    renderList();
+  </script>
+
+</body>
+</html>

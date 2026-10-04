@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>A-Frame 火箭结构</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="libs/aframe.min.js"></script>
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark" style="position: absolute; top: 0; left: 0; right: 0; z-index: 10;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">← 作品集首页</a>
+      <span class="navbar-text text-white-50">A-Frame 火箭结构</span>
+    </div>
+  </nav>
+
+  <a-scene background="color: #0a1a2f">
+
+    <a-plane position="0 0 -5" rotation="-90 0 0" width="20" height="20" color="#1e2a3a"></a-plane>
+
+    <!-- 鼻锥 -->
+    <a-cone position="0 4.5 -5" radius-bottom="0.3" radius-top="0" height="1" color="#fafafa"></a-cone>
+    <!-- 箭体 -->
+    <a-cylinder position="0 2.5 -5" radius="0.3" height="3" color="#ffffff"></a-cylinder>
+    <!-- 喷嘴 -->
+    <a-cone position="0 0.6 -5" rotation="180 0 0" radius-top="0.3" radius-bottom="0.15" height="0.5" color="#333333"></a-cone>
+    <!-- 火焰（动画） -->
+    <a-cone position="0 -0.3 -5" rotation="180 0 0" radius-top="0.2" radius-bottom="0" height="0.9" color="#ff5722"
+            material="opacity: 0.85; emissive: #ff5722; emissiveIntensity: 0.6"
+            animation="property: scale; to: 1 1.2 1; dir: alternate; dur: 200; loop: true"></a-cone>
+
+    <a-light type="ambient" color="#ffffff" intensity="0.7"></a-light>
+    <a-light type="point" position="2 4 -3" color="#fff59d" intensity="0.5"></a-light>
+
+    <a-camera position="0 2.5 4"></a-camera>
+
+  </a-scene>
+
+</body>
+</html>

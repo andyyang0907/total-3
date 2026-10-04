@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECharts 火箭对比</title>
+
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">← 作品集首页</a>
+      <span class="navbar-text text-white-50">ECharts 分组柱状图</span>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <h1 class="h4 mb-3">运载火箭参数对比</h1>
+    <p class="text-muted small" id="data-source"></p>
+
+    <div class="mb-3">
+      <label class="form-label">切换火箭：</label>
+      <select id="rocket-select" class="form-select" style="max-width: 240px;"></select>
+    </div>
+
+    <div id="param-chart" style="height: 400px;"></div>
+
+    <p id="status" class="alert alert-warning mt-3" style="display: none;"></p>
+
+  </main>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script>
+    let chart = null;
+    let allRockets = [];
+
+    $.getJSON('data/rockets.json')
+      .done(data => {
+        $('#data-source').text('数据来源：' + data.source);
+        allRockets = data.rockets;
+        const select = $('#rocket-select');
+        allRockets.forEach(r => select.append(`<option value="${r.id}">${r.name}</option>`));
+        select.on('change', () => renderChart(select.val()));
+        renderChart(allRockets[0].id);
+      })
+      .fail(() => $('#status').text('加载失败：data/rockets.json').show());
+
+    const renderChart = id => {
+      const rocket = allRockets.find(r => r.id === id);
+      const names = allRockets.map(r => r.name);
+      const itemStyle = r => ({ color: r.id === id ? r.color : '#cccccc' });
+      if (chart) chart.dispose();
+      chart = echarts.init($('#param-chart')[0]);
+      chart.setOption({
+        title: { text: '高亮为当前火箭', left: 'center' },
+        tooltip: { trigger: 'axis' },
+        legend: { data: ['高度（米）', '近地轨道运载（吨）'], top: 30 },
+        xAxis: { type: 'category', data: names },
+        yAxis: { type: 'value' },
+        series: [
+          { name: '高度（米）', type: 'bar', data: allRockets.map(r => ({ value: r.height, itemStyle: itemStyle(r) })) },
+          { name: '近地轨道运载（吨）', type: 'bar', data: allRockets.map(r => ({ value: r.massToLEO, itemStyle: itemStyle(r) })) }
+        ]
+      });
+    };
+  </script>
+
+</body>
+</html>
